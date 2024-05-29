@@ -7,3 +7,6 @@ https://github.com/LindyHopperGT/BlackboardGameplayTags
 
 and this fork of Flow plugin (*until the integration is complete):
 https://github.com/LindyHopperGT/FlowGraph/tree/5.x
+
+For documentation on Flow plugin see:
+https://github.com/MothCocoon/FlowGraph/wiki
