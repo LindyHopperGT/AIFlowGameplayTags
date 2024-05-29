@@ -1,0 +1,33 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.6",
+	"FriendlyName": "AI Flow GameplayTags",
+	"Description": "An extension to the AI Flow plugin adds GameplayTag Blackboard support.",
+	"Category": "Gameplay",
+	"CreatedByURL": "https://github.com/MothCocoon/FlowGraph/graphs/contributors",
+	"DocsURL": "https://github.com/MothCocoon/FlowGraph/wiki",
+	"MarketplaceURL": "",
+	"SupportURL": "https://discord.gg/zMtMQ2vUUa",
+	"EnabledByDefault": false,
+	"CanContainContent": false,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "AIFlowGameplayTags",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "AIFlow",
+			"Enabled": true
+		},
+		{
+			"Name": "BlackboardGameplayTags",
+			"Enabled": true
+		}
+	]
+}
