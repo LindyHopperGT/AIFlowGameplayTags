@@ -31,7 +31,7 @@ void UFlowNodeAddOn_PredicateGameplayTagQueryExt::PostInitProperties()
 
 	if (Key.AllowedTypes.IsEmpty())
 	{
-		Key.AllowedTypes.Add(NewObject<UBlackboardKeyType_Object>(this));
+		Key.AllowedTypes.Add(NewObject<UBlackboardKeyTypeExt_GameplayTag>(this));
 		Key.AllowedTypes.Add(NewObject<UBlackboardKeyTypeExt_GameplayTagContainer>(this));
 	}
 }
@@ -47,7 +47,7 @@ bool UFlowNodeAddOn_PredicateGameplayTagQueryExt::EvaluatePredicate_Implementati
 		return false;
 	}
 
-	TSubclassOf<UBlackboardKeyType> KeyType = GetBlackboardKeyType(*BlackboardComponent, Key.GetKeyName());
+	UBlackboardKeyType* KeyType = GetBlackboardKeyType(*BlackboardComponent, Key.GetKeyName());
 	if (!IsValidBlackboardKey(*BlackboardComponent, Key.GetKeyName()) || !IsValid(KeyType))
 	{
 		// Invalid Key results in a "false" result
@@ -71,11 +71,11 @@ bool UFlowNodeAddOn_PredicateGameplayTagQueryExt::EvaluatePredicate_Implementati
 
 	// Lookup the Tag or TagContainer from the blackboard
 	FGameplayTagContainer TagContainerFromBlackboard;
-	if (KeyType->IsChildOf<UBlackboardKeyTypeExt_GameplayTag>())
+	if (KeyType->IsA<UBlackboardKeyTypeExt_GameplayTag>())
 	{
 		TagContainerFromBlackboard = FGameplayTagContainer(UBlackboardGameplayTagFunctionLibrary::GetValueAsGameplayTag(BlackboardComponent, Key.GetKeyName()));
 	}
-	else if (KeyType->IsChildOf<UBlackboardKeyTypeExt_GameplayTagContainer>())
+	else if (KeyType->IsA<UBlackboardKeyTypeExt_GameplayTagContainer>())
 	{
 		TagContainerFromBlackboard = UBlackboardGameplayTagFunctionLibrary::GetValueAsGameplayTagContainer(BlackboardComponent, Key.GetKeyName());
 	}
