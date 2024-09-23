@@ -28,6 +28,10 @@
 		{
 			"Name": "BlackboardGameplayTags",
 			"Enabled": true
+		},
+		{
+			"Name": "StructUtils",
+			"Enabled": true
 		}
 	]
 }
