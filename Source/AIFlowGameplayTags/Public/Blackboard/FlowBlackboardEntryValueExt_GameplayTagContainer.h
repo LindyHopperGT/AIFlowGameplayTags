@@ -11,7 +11,7 @@
 /**
  * Configuration object for setting blackboard entries for UBlackboardKeyTypeExt_GameplayTagContainer entries
  */
-UCLASS(BlueprintType, DisplayName = "GameplayTagContainer Blackboard Value")
+UCLASS(BlueprintType, EditInlineNew, DisplayName = "GameplayTagContainer Blackboard Value")
 class AIFLOWGAMEPLAYTAGS_API UFlowBlackboardEntryValueExt_GameplayTagContainer : public UFlowBlackboardEntryValue
 {
 	GENERATED_BODY()
