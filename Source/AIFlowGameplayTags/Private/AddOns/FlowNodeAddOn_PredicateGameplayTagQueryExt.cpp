@@ -14,7 +14,7 @@ UFlowNodeAddOn_PredicateGameplayTagQueryExt::UFlowNodeAddOn_PredicateGameplayTag
 	: Super()
 {
 #if WITH_EDITOR
-	NodeDisplayStyle = TAG_Flow_NodeDisplayStyle_AddOn_Predicate;
+	NodeDisplayStyle = FlowNodeStyle::AddOn_Predicate;
 	Category = TEXT("Blackboard");
 #endif
 }
