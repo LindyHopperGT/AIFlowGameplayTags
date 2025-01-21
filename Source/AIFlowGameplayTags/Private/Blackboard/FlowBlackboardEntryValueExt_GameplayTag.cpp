@@ -51,6 +51,20 @@ bool UFlowBlackboardEntryValueExt_GameplayTag::TryProvideFlowDataPinProperty(con
 	return true;
 }
 
+bool UFlowBlackboardEntryValueExt_GameplayTag::TryProvideFlowDataPinPropertyFromBlackboardEntry(
+	const FName& BlackboardKeyName,
+	const UBlackboardKeyType& BlackboardKeyType,
+	UBlackboardComponent* OptionalBlackboardComponent,
+	TInstancedStruct<FFlowDataPinProperty>& OutFlowDataPinProperty) const
+{
+	return
+		TryProvideFlowDataPinPropertyFromBlackboardEntryTemplate<UBlackboardKeyTypeExt_GameplayTag, FFlowDataPinOutputProperty_GameplayTag>(
+			BlackboardKeyName,
+			BlackboardKeyType,
+			OptionalBlackboardComponent,
+			OutFlowDataPinProperty);
+}
+
 bool UFlowBlackboardEntryValueExt_GameplayTag::TrySetValueFromInputDataPin(const FName& PinName, UFlowNode& PinOwnerFlowNode)
 {
 	const FFlowDataPinResult_GameplayTag FlowDataPinResult = PinOwnerFlowNode.TryResolveDataPinAsGameplayTag(PinName);
