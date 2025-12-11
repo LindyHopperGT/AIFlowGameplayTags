@@ -7,7 +7,7 @@
 #include "AIFlowGameplayTagsLogChannels.h"
 #include "Logging/LogMacros.h"
 #include "Nodes/FlowNode.h"
-#include "Types/FlowDataPinProperties.h"
+#include "Types/FlowDataPinValuesStandard.h"
 #include "Types/FlowDataPinResults.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(FlowBlackboardEntryValueExt_GameplayTagContainer)
@@ -37,16 +37,9 @@ FText UFlowBlackboardEntryValueExt_GameplayTagContainer::BuildNodeConfigText() c
 }
 #endif // WITH_EDITOR
 
-bool UFlowBlackboardEntryValueExt_GameplayTagContainer::TryProvideFlowDataPinProperty(const bool bIsInputPin, TInstancedStruct<FFlowDataPinProperty>& OutFlowDataPinProperty) const
+bool UFlowBlackboardEntryValueExt_GameplayTagContainer::TryProvideFlowDataPinProperty(TInstancedStruct<FFlowDataPinValue>& OutFlowDataPinProperty) const
 {
-	if (bIsInputPin)
-	{
-		OutFlowDataPinProperty.InitializeAs<FFlowDataPinInputProperty_GameplayTagContainer>(TagContainerValue);
-	}
-	else
-	{
-		OutFlowDataPinProperty.InitializeAs<FFlowDataPinOutputProperty_GameplayTagContainer>(TagContainerValue);
-	}
+	OutFlowDataPinProperty.InitializeAs<FFlowDataPinValue_GameplayTagContainer>(TagContainerValue);
 
 	return true;
 }
@@ -55,10 +48,10 @@ bool UFlowBlackboardEntryValueExt_GameplayTagContainer::TryProvideFlowDataPinPro
 	const FName& BlackboardKeyName,
 	const UBlackboardKeyType& BlackboardKeyType,
 	UBlackboardComponent* OptionalBlackboardComponent,
-	TInstancedStruct<FFlowDataPinProperty>& OutFlowDataPinProperty) const
+	TInstancedStruct<FFlowDataPinValue>& OutFlowDataPinProperty) const
 {
 	return
-		TryProvideFlowDataPinPropertyFromBlackboardEntryTemplate<UBlackboardKeyTypeExt_GameplayTagContainer, FFlowDataPinOutputProperty_GameplayTagContainer>(
+		TryProvideFlowDataPinPropertyFromBlackboardEntryTemplate<UBlackboardKeyTypeExt_GameplayTagContainer, FFlowDataPinValue_GameplayTagContainer>(
 			BlackboardKeyName,
 			BlackboardKeyType,
 			OptionalBlackboardComponent,
@@ -67,16 +60,8 @@ bool UFlowBlackboardEntryValueExt_GameplayTagContainer::TryProvideFlowDataPinPro
 
 bool UFlowBlackboardEntryValueExt_GameplayTagContainer::TrySetValueFromInputDataPin(const FName& PinName, UFlowNode& PinOwnerFlowNode)
 {
-	const FFlowDataPinResult_GameplayTagContainer FlowDataPinResult = PinOwnerFlowNode.TryResolveDataPinAsGameplayTagContainer(PinName);
-
-	if (FlowDataPinResult.Result == EFlowDataPinResolveResult::Success)
-	{
-		TagContainerValue = FlowDataPinResult.Value;
-
-		return true;
-	}
-
-	return false;
+	const EFlowDataPinResolveResult ResolveResult = PinOwnerFlowNode.TryResolveDataPinValue<FFlowPinType_GameplayTagContainer>(PinName, TagContainerValue);
+	return FlowPinType::IsSuccess(ResolveResult);
 }
 
 void UFlowBlackboardEntryValueExt_GameplayTagContainer::SetOnBlackboardComponent(UBlackboardComponent* BlackboardComponent) const

@@ -16,7 +16,6 @@ public class AIFlowGameplayTags : ModuleRules
 			"AIModule",
 			"BlackboardGameplayTags",
 			"Flow",
-			"StructUtils",
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] 

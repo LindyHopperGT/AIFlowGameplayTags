@@ -9,7 +9,7 @@
 	"DocsURL": "https://github.com/MothCocoon/FlowGraph/wiki",
 	"MarketplaceURL": "",
 	"SupportURL": "https://discord.gg/zMtMQ2vUUa",
-	"EnabledByDefault": true,
+	"EnabledByDefault": false,
 	"CanContainContent": false,
 	"IsBetaVersion": false,
 	"Installed": false,
@@ -27,10 +27,6 @@
 		},
 		{
 			"Name": "BlackboardGameplayTags",
-			"Enabled": true
-		},
-		{
-			"Name": "StructUtils",
 			"Enabled": true
 		}
 	]
