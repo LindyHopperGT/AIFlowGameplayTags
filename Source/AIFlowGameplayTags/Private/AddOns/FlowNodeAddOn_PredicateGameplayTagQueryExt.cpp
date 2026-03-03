@@ -14,8 +14,9 @@ UFlowNodeAddOn_PredicateGameplayTagQueryExt::UFlowNodeAddOn_PredicateGameplayTag
 	: Super()
 {
 #if WITH_EDITOR
-	NodeDisplayStyle = FlowNodeStyle::AddOn_Predicate;
-	Category = TEXT("Blackboard");
+	NodeDisplayStyle = FlowNodeStyle::Deprecated;
+	Category = TEXT("Deprecated");
+	bNodeDeprecated = true;
 #endif
 }
 

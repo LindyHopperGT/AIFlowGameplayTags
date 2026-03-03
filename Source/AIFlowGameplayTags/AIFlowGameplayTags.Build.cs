@@ -12,6 +12,7 @@ public class AIFlowGameplayTags : ModuleRules
 			"Core",
 			"CoreUObject",
 			"Engine",
+			"GameplayAbilities", // for FGameplayTagRequirements
 			"GameplayTags",
 			"AIModule",
 			"BlackboardGameplayTags",
